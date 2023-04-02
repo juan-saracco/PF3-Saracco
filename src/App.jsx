@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import db from "../db/firebase-config.js";
 import "./App.css"
+import Footer from './components/Footer/index.jsx';
 import Home from './components/Home/index.jsx';
 import ItemDetail from './components/ItemDetail/index.jsx';
 import ListItems from './components/ListItems/index.jsx';
@@ -36,9 +37,9 @@ function App() {
   }
 
 
-  //funcion para agregar productos a la coleccion productos
+  //funcion para agregar productos a la coleccion carrito
   const addItem = async () => {
-    const docRef = await addDoc(productosCollectionRef, {
+    const docRef = await addDoc(carritoCollectionRef, {
     title: "Producto 1(additem)",
     });
     console.log("Document written with ID: ", docRef.id);
@@ -50,7 +51,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <div className="loading"><h1 className='loader'></h1></div>
   }
 
   return (
@@ -73,6 +74,7 @@ function App() {
           element={<ItemDetail />}
           />
        </Routes>
+       <Footer />
       </div>
   )
 }

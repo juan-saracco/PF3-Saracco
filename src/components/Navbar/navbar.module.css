@@ -5,6 +5,7 @@
     height: 10vh;
     background-color: cornflowerblue;
     padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .iconContainer{
@@ -20,5 +21,19 @@
 .li{
     list-style: none;
     margin: 0 1rem;
+}
+
+.cartContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter{
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
 }
 

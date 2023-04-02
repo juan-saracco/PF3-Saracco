@@ -1,0 +1,16 @@
+.container{
+    background-color: cornflowerblue;
+    display: flex;
+    height: 15vh;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+.name{
+    text-align: center;
+    color: black;
+}

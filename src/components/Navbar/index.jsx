@@ -17,8 +17,11 @@ const Navbar = () => {
         <li className={styles.li}>Creatina</li>
         <li className={styles.li}>Pre Entreno</li>
       </ul>
-      <div>
+      <div className={styles.cartContainer}>
+        <Link to='/carrito'> 
         <img src="img/carro-de-la-carretilla.png" className={styles.iconContainer} alt="cart" />
+        </Link>
+        <div className={styles.counter}>1</div>
       </div>
     </div>
   )
