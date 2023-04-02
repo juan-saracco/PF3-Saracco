@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    background-color: cornflowerblue;
+    padding: 1rem;
+}
+
+.iconContainer{
+    width: 2rem;
+}
+
+.ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.li{
+    list-style: none;
+    margin: 0 1rem;
+}
+

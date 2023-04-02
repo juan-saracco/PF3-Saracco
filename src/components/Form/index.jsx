@@ -26,8 +26,18 @@ const Form = ({setProductos}) => {
 
   return (
     <form onSubmit={addItem}>
-        <input type="text" value={inputTitle} placeholder="title" onChange={(e) => setInputTitle(e.target.value)}/>
-        <input type="text" value={inputPrice} placeholder="price" onChange={(e) => setInputPrice(e.target.value)}/>
+        <input 
+        type="text" 
+        value={inputTitle}
+         placeholder="title"
+          onChange={(e) => setInputTitle(e.target.value)}
+          />
+        <input 
+        type="text" 
+        value={inputPrice}
+         placeholder="price"
+          onChange={(e) => setInputPrice(e.target.value)}
+          />
         <button type="submit">Submit</button>
     </form>
   )
