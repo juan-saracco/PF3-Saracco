@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import Card from "../Card";
 import Form from "../Form";
 import styles from "./listItems.module.css";
+import React, { useContext } from "react";
+//import { cartContext } from "../../context/CartContext.jsx";
 
 const ListItems = ({productos, setProductos, deleteItem}) => {
+  
+
+  
   return (
+
     <div >
       <Form setProductos={setProductos} />
       <div className={styles.container}>

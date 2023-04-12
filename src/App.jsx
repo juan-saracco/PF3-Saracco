@@ -1,5 +1,5 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import db from "../db/firebase-config.js";
 import "./App.css"
@@ -8,6 +8,10 @@ import Home from './components/Home/index.jsx';
 import ItemDetail from './components/ItemDetail/index.jsx';
 import ListItems from './components/ListItems/index.jsx';
 import Navbar from './components/Navbar/index.jsx';
+import Title from './components/Title/index.jsx';
+import ItemListContainer from './components/ItemListContainer/index.jsx';
+import ItemDetailContainer from './components/ItemDetailContainer/index.jsx';
+//import CartProvider from './context/CartContext.jsx';
 
 function App() {
   //state productos
@@ -56,7 +60,10 @@ function App() {
 
   return (
     <div>
+
       <Navbar />
+      <Title />
+      <ItemDetailContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route 
@@ -74,6 +81,7 @@ function App() {
           element={<ItemDetail />}
           />
        </Routes>
+
        <Footer />
       </div>
   )

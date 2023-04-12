@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
+import CartWidget from '../CartWidget';
 
 const Navbar = () => {
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
       </ul>
       <div className={styles.cartContainer}>
         <Link to='/carrito'> 
-        <img src="img/carro-de-la-carretilla.png" className={styles.iconContainer} alt="cart" />
+        <CartWidget />
         </Link>
         <div className={styles.counter}>1</div>
       </div>

@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import db from '../../../db/firebase-config';
 import styles from './itemDetail.module.css';
+//import { useCartContext } from '../../context/CartContext.jsx';
 
-const ItemDetail = () => {
+const ItemDetail = ({ data }) => {
    const {id} = useParams();
    const [item, setItem] = useState({});
    const [loading, setLoading] = useState(true)
+   //const {addProduct} = useCartContext();
 
    const getItem = async (id) => {
     const docRef = doc(db, "productos", id);
@@ -37,6 +39,12 @@ const ItemDetail = () => {
         <h3>{item.description}</h3>
       </div>
       <button className={styles.button}>Agregar al carrito</button>
+      
+
+      <div>
+        <div>
+        </div>
+      </div>
     </div>
   )
 }
