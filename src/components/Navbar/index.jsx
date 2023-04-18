@@ -11,15 +11,18 @@ const Navbar = () => {
       </div>
         </Link>
       <ul className={styles.ul}>
-        <Link to='/productos'>
+        <Link to='/categoria/proteina'>
         <li className={styles.li}>Proteina</li>
         </Link>
-        
+        <Link to='/categoria/creatina'>
         <li className={styles.li}>Creatina</li>
+        </Link>
+        <Link to='/categoria/preentreno'>
         <li className={styles.li}>Pre Entreno</li>
+        </Link>
       </ul>
       <div className={styles.cartContainer}>
-        <Link to='/carrito'> 
+        <Link to='/cart'> 
         <CartWidget />
         </Link>
         <div className={styles.counter}>1</div>

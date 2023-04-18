@@ -1,11 +1,18 @@
-import { doc, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import db from '../../../db/firebase-config';
-import styles from './itemDetail.module.css';
-//import { useCartContext } from '../../context/CartContext.jsx';
+import React, { useState, useContext } from 'react';
+import ItemCount from '../ItemCount';
+import { Link } from 'react-router-dom';
+
+
+
+
 
 const ItemDetail = ({ data }) => {
+  const [goToCart, setGoToCart] = useState(false);
+
+  const onAdd = (quantity) => {
+    setGoToCart(true);
+    addProduct(data, quantity);
+  }
 
   return (
 
@@ -14,6 +21,11 @@ const ItemDetail = ({ data }) => {
         <div>
           <h1>{data.title}</h1>
           <h2>{data.director}</h2>
+          {
+            goToCart
+            ? <Link to='/cart'>Terminar mi compra</Link>
+            : <ItemCount stock={5} initial={1} onAdd={onAdd} />
+          }
         </div>
       </div>
 
