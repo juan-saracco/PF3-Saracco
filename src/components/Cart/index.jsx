@@ -3,9 +3,18 @@ import { useCartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom';
 import ItemCart from '../ItemCart';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import styles from './cart.module.css';
+import Swal from 'sweetalert2'
+
+
+
+
+
 
 const Cart = () => {
   const {cart, totalPrice} = useCartContext();
+
+  const { clearCart } = useCartContext();
 
   const order = {
     buyer: {
@@ -28,6 +37,40 @@ const Cart = () => {
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
     .then(({id}) => console.log(id))
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Quieres finalizar la compra?',
+      text: "No podras revertir esta accion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, comprar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Comprado!',
+          'Tu compra ha sido realizada con exito.',
+        )
+        clearCart();
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'Tu compra ha sido cancelada :)',
+          'error'
+        )
+      }
+    })
   }
 
 
@@ -35,20 +78,24 @@ const Cart = () => {
   if(cart.length === 0){
 
    return (
-    <>
-      <h1>Carrito vacio</h1>
-      <Link to="/">Volver al inicio</Link>
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.contenedor}>
+      <h1 className={styles.title}>Carrito vacio</h1>
+      <Link className={styles.boton} to="/">Volver al inicio</Link>
+      </div>
+    </div>
   )
   
   }
 
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {cart.map(product => <ItemCart key={product.id} product={product}/>)}
-      <h1>Total: ${totalPrice()}</h1>
-      <button onClick={handleCick} >Comprar</button>
+      <div  className={styles.container}>
+      <h1 className={styles.price}>Total: ${totalPrice()}</h1>
+      <button className={styles.boton} onClick={handleCick} >Comprar</button>
+      </div>
     </div>
   )
 }
