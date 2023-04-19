@@ -11,7 +11,7 @@ const ItemDetail = ({ data }) => {
 
   const onAdd = (quantity) => {
     setGoToCart(true);
-    addProduct(data, quantity);
+    //addProduct(data, quantity);
   }
 
   return (
