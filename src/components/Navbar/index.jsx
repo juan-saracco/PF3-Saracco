@@ -25,7 +25,6 @@ const Navbar = () => {
         <Link to='/cart'> 
         <CartWidget />
         </Link>
-        <div className={styles.counter}>1</div>
       </div>
     </div>
   )
