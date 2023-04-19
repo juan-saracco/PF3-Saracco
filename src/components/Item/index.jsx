@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './item.module.css';
 import { Link } from 'react-router-dom';
 
@@ -6,10 +6,13 @@ const Item = ({ info}) => {
 
 
   return (
-    <Link to={`/detalle/${info.id}`} className='film'>
-      <h1>{info.year}</h1>
-      <p>{info.title}</p>
+    <div className={styles.container}>
+    <Link to={`/detalle/${info.id}`} >
+      <img className={styles.img} src={info.img} alt={info.title} />
+      <h1 className={styles.title} >{info.title}</h1>
+      <p>{info.description}</p>
     </Link>
+    </div>
   )
 }
 

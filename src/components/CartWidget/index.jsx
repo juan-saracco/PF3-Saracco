@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCartContext } from '../../context/CartContext';
+import styles from './cartWidget.module.css';
 
 export const CartWidget = () => {
   const { totalProducts } = useCartContext();
@@ -9,7 +10,7 @@ export const CartWidget = () => {
   return (
     <>
       <i className="bi bi-cart2"></i>
-      <span>{totalProducts() || ''}</span>
+      <p className={styles.counter}>{totalProducts() || ''}</p>
     </>
   )
 }

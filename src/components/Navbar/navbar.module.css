@@ -27,10 +27,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+   
 }
 
 .counter{
-    background-color: cornflowerblue;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
