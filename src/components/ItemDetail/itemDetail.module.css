@@ -38,7 +38,21 @@
     text-align: center;
 }
 
-.button{
+.description{
+    font-size: 1em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.terminar{
     background-color: cornflowerblue;
     width: 25vw;
     min-width: 8rem;
@@ -49,10 +63,12 @@
     margin-top: 2rem;
     padding: .5rem 1rem;
     cursor: pointer;
+    text-align: center;
 }
 
-.button:hover{
+.terminar:hover{
     background-color: rgb(136, 165, 219);
 
 
 }
+

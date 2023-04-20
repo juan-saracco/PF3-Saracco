@@ -1,0 +1,33 @@
+.itemCart{
+display: flex;
+border-bottom: 1px solid black;
+max-width: 500px;
+margin: 1rem auto;
+padding: 1rem;
+}
+
+.img{
+width: 8rem;
+height: 12rem;
+margin-right: 1rem;
+}
+
+.title{
+font-size: 1.5rem;
+}
+
+.price{
+font-size: 1.5rem;
+}
+
+.boton{
+background-color: cornflowerblue;
+border: 1px solid;
+margin-left: auto;
+padding: 0.5rem 1rem;
+}
+
+.boton:hover{
+background-color: blue;
+}
+

@@ -1,16 +1,101 @@
-import { collection } from 'firebase/firestore';
-import db from '../../../db/firebase-config';
+import React from 'react'
+import { useCartContext } from '../../context/CartContext'
+import { Link } from 'react-router-dom';
+import ItemCart from '../ItemCart';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import styles from './cart.module.css';
+import Swal from 'sweetalert2'
 
-const Cart = ({setCarrito}) => {
-    const additem = async () => {
-        const carritoCollectionRef = collection(db, "carrito");
-        await addDoc(carritoCollectionRef);
-        setCarrito([...carrito, {title: "Producto 1(additem)"}])
-    }
+
+
+
+
+
+const Cart = () => {
+  const {cart, totalPrice} = useCartContext();
+
+  const { clearCart } = useCartContext();
+
+  const order = {
+    buyer: {
+      name: "Juan",
+      phone: "123456789",
+      email: "juan@gmail.com",
+      adrress: "Calle falsa 123"
+    },
+    items: cart.map(product => ({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity: product.quantity
+      })),
+    total: totalPrice(),
+  }
+
+  const handleCick = () => {
+    const db = getFirestore();
+    const ordersCollection = collection(db, "orders");
+    addDoc(ordersCollection, order)
+    .then(({id}) => console.log(id))
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Quieres finalizar la compra?',
+      text: "No podras revertir esta accion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, comprar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Comprado!',
+          'Tu compra ha sido realizada con exito.',
+        )
+        clearCart();
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'Tu compra ha sido cancelada :)',
+          'error'
+        )
+      }
+    })
+  }
+
+
+
+  if(cart.length === 0){
+
+   return (
+    <div className={styles.wrapper}>
+      <div className={styles.contenedor}>
+      <h1 className={styles.title}>Carrito vacio</h1>
+      <Link className={styles.boton} to="/">Volver al inicio</Link>
+      </div>
+    </div>
+  )
+  
+  }
+
+
   return (
-    <div className={styles.container}>
-   
+    <div className={styles.wrapper}>
+      {cart.map(product => <ItemCart key={product.id} product={product}/>)}
+      <div  className={styles.container}>
+      <h1 className={styles.price}>Total: ${totalPrice()}</h1>
+      <button className={styles.boton} onClick={handleCick} >Comprar</button>
+      </div>
     </div>
   )
 }
