@@ -2,7 +2,7 @@ import React from 'react'
 import { useCartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom';
 import ItemCart from '../ItemCart';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getDoc, getDocs, getFirestore } from 'firebase/firestore';
 import styles from './cart.module.css';
 import Swal from 'sweetalert2'
 
@@ -32,11 +32,19 @@ const Cart = () => {
     total: totalPrice(),
   }
 
+  const vaciarCarrito = () => {
+    clearCart();
+  }
+
+
   const handleCick = () => {
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
-    .then(({id}) => console.log(id))
+  .then(({id}) => {
+    console.log(id);
+    return id;
+  })
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -57,11 +65,10 @@ const Cart = () => {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
           'Comprado!',
-          'Tu compra ha sido realizada con exito.',
+          'Tu compra ha sido realizada con exito.'
         )
         clearCart();
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
@@ -95,6 +102,7 @@ const Cart = () => {
       <div  className={styles.container}>
       <h1 className={styles.price}>Total: ${totalPrice()}</h1>
       <button className={styles.boton} onClick={handleCick} >Comprar</button>
+      <button onClick={vaciarCarrito} className={styles.boton}> Vaciar carrito </button>
       </div>
     </div>
   )

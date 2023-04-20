@@ -16,7 +16,7 @@
 .boton{
     background-color: cornflowerblue;
     border: 1px solid;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 0.5rem 1rem;
 }
 
@@ -24,9 +24,6 @@
     background-color: blue;
 }
 
-.wrapper{
-    height: 100vh;
-}
 
 .title{
     text-align: center;
@@ -42,4 +39,5 @@
     margin: 0 auto;
     width: 100%;
     max-width: 800px;
+    min-height: 80vh;
 }

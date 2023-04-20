@@ -26,7 +26,7 @@ const CartProvider = ({ children }) => {
   };
 
   const totalProducts = () => {
-    cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0);
+    return cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0);
   };
 
   const clearCart = () => setCart([]);

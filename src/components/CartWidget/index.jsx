@@ -6,12 +6,11 @@ export const CartWidget = () => {
   const { totalProducts } = useCartContext();
 
 
-
   return (
-    <>
+    <div className={styles.container}>
       <i className="bi bi-cart2"></i>
-      <p className={styles.counter}>{totalProducts() || ''}</p>
-    </>
+      <p className={styles.counter}>{totalProducts() || "0"}</p>
+    </div>
   )
 }
 

@@ -61,4 +61,8 @@ button:focus-visible {
   }
 }
 
+body {
+  min-height: 100vh; /* Establecemos una altura mínima igual a la altura de la ventana del navegador */
+  position: relative; /* Establecemos la posición relativa */
+}
 
