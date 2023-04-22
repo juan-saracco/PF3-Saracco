@@ -2,7 +2,7 @@ import React from 'react'
 import { useCartContext } from '../../context/CartContext'
 import { Link } from 'react-router-dom';
 import ItemCart from '../ItemCart';
-import { addDoc, collection, getDoc, getDocs, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import styles from './cart.module.css';
 import Swal from 'sweetalert2'
 
@@ -38,13 +38,6 @@ const Cart = () => {
 
 
   const handleCick = () => {
-    const db = getFirestore();
-    const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order)
-  .then(({id}) => {
-    console.log(id);
-    return id;
-  })
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -63,10 +56,16 @@ const Cart = () => {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
+        const db = getFirestore();
+        const ordersCollection = collection(db, "orders");
+        addDoc(ordersCollection, order)
+      .then(({id}) => {
+        console.log(id);
         swalWithBootstrapButtons.fire(
           'Comprado!',
-          'Tu compra ha sido realizada con exito.'
+          `Tu compra ha sido realizada con exito. Tu numero de orden es: \n${id}`,
         )
+      })
         clearCart();
       } else if (
         result.dismiss === Swal.DismissReason.cancel
